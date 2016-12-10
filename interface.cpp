@@ -334,9 +334,10 @@ void Interface::list(Table table) {
 QString Interface::clear() {
 #if defined(WIN32) || defined(_WIN32) || \
     defined(__WIN32) && !defined(__CYGWIN__)
-    QProcess::execute("CLS");
+	out << QString(100, '\n') << flush; // gross
+    QProcess::execute("CLS"); // doesn't seem to work
 #else
-    QProcess::execute("clear");
+    QProcess::execute("clear"); // works fine
 #endif
 
     return "y";
